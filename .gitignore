@@ -1,0 +1,12 @@
+# entornos
+env/
+.venv/
+__pycache__/
+
+# datos grandes (NO subir a GitHub)
+Data/
+Output/
+
+# archivos temporales
+*.log
+*.tmp
