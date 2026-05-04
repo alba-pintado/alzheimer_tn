@@ -1,12 +1,14 @@
-# entornos
-env/
-.venv/
-__pycache__/
-
-# datos grandes (NO subir a GitHub)
-Data/
+# outputs generados
 Output/
 
-# archivos temporales
-*.log
-*.tmp
+# datos pesados opcionales
+Data/
+
+# R / python basura
+*.RData
+*.Rhistory
+__pycache__/
+*.pyc
+
+# sistema
+.DS_Store
