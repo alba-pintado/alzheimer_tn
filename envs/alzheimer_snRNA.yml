@@ -1,0 +1,41 @@
+name: alzheimer_snRNA
+
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+
+dependencies:
+  - python=3.11
+  - pip
+
+  - numpy
+  - pandas
+  - scipy
+  - scikit-learn
+  - statsmodels
+
+  - matplotlib
+  - seaborn
+  - plotly
+
+  - jupyterlab
+  - ipykernel
+
+  - scanpy
+  - anndata
+  - h5py
+
+  - pytorch
+  - torchvision
+  - torchaudio
+
+  - pip:
+      - scvi-tools
+      - leidenalg
+      - igraph
+      - umap-learn
+      - harmonypy
+      - scrublet
+      - celltypist
+      - scikit-misc

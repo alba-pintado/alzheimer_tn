@@ -1,6 +1,6 @@
 # outputs generados
-output/
 papers/
+results/
 
 # datos pesados opcionales
 data/
