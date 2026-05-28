@@ -1,8 +1,9 @@
 # outputs generados
-Output/
+output/
+papers/
 
 # datos pesados opcionales
-Data/
+data/
 
 # R / python basura
 *.RData
