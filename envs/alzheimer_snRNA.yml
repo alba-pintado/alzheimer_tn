@@ -1,41 +1,31 @@
 name: alzheimer_snRNA
-
 channels:
   - conda-forge
   - bioconda
   - defaults
-
 dependencies:
-  - python=3.11
-  - pip
-
-  - numpy
-  - pandas
-  - scipy
-  - scikit-learn
-  - statsmodels
-
-  - matplotlib
-  - seaborn
-  - plotly
-
-  - jupyterlab
-  - ipykernel
-
-  - scanpy
-  - anndata
-  - h5py
-
-  - pytorch
-  - torchvision
-  - torchaudio
-
-  - pip:
-      - scvi-tools
-      - leidenalg
-      - igraph
-      - umap-learn
-      - harmonypy
-      - scrublet
-      - celltypist
-      - scikit-misc
+  # Core
+  - r-base=4.4.2
+  - r-essentials
+  # Lectura de datos
+  - r-qs>=0.25.5          # CRÍTICO: versión 2 del formato
+  - r-qs2                 # Alternativa si qs falla
+  # Single-cell
+  - r-seurat>=5.0.0
+  - r-seuratobject
+  - r-matrix
+  # RaceID
+  - r-raceid              # Incluye RaceID3 + StemID2 + VarID2
+  # Análisis
+  - r-dplyr
+  - r-ggplot2
+  - r-patchwork
+  - r-scales
+  - r-viridis
+  - r-pheatmap
+  # Jupyter
+  - jupyter
+  - r-irkernel
+  # Snakemake
+  - snakemake>=7.0
+  - python>=3.10
