@@ -1,15 +1,48 @@
 # outputs generados
 papers/
 results/
+*.pdf
+*.csv
+*.png
+*.jpg
+
 
 # datos pesados opcionales
-data/
+dta/
+data/organized_data/
+data/annotations/
+data/*.zip
+*.qs
+*.rds
+*.h5
+*.h5ad
+*.mtx
+*.mtx.tar
+*.tar
+
+# Paquete RaceID descomprimido (se instala aparte)
+RaceID3_StemID2_package-master/
+*.so
+*.o
+
+
+# entornos ytemporales de R
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
 
 # R / python basura
 *.RData
 *.Rhistory
 __pycache__/
 *.pyc
+.ipynb_checkpoints/
+
 
 # sistema
 .DS_Store
+Thumbs.db
+close
