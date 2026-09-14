@@ -1,0 +1,43 @@
+name: alzheimer_snRNA
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+  - nodefaults
+dependencies:
+  - plotly
+  - h5py
+  - ipykernel
+  - torchaudio
+  - pip
+  - scikit-learn
+  - pandas
+  - pytorch
+  - matplotlib
+  - python[version='>=3.10']
+  - seaborn
+  - anndata
+  - jupyterlab
+  - torchvision
+  - numpy
+  - scipy
+  - scanpy
+  - statsmodels
+  - r-qs[version='>=0.25.5']
+  - r-ggplot2
+  - r-raceid
+  - r-matrix
+  - r-seurat[version='>=5.0.0']
+  - r-viridis
+  - r-seuratobject
+  - r-dplyr
+  - r-irkernel
+  - jupyter
+  - r-patchwork
+  - r-qs2
+  - snakemake[version='>=7.0']
+  - r-essentials
+  - r-pheatmap
+  - r-base=4.4.2
+  - r-scales
+prefix: /home/vant/miniconda3/envs/alzheimer_snRNA
