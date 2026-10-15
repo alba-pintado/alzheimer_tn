@@ -1,18 +1,19 @@
-# Lau et al. 2020: preprocesado de snRNA-seq en un unico script
-#
+# Lau et al. 2020: preprocesado en un unico script
+
 # TFM "Transcriptional Noise in Alzheimer's Disease Progression" (CBMSO)
-# Alba Pintado. Master en Bioinformatica y Ciencia de Datos (ISCIII)
-#
-# Antes de ejecutar: cambiar la variable "proyecto" por la ruta local.
-#
-# Pasos:
+# Master en Bioinformatica y Ciencia de Datos (ISCIII)
+
+# Orden de los pasos:
 #   (1) Control de calidad
-#   (2) ARN ambiental con decontX y filtrado por contaminacion
+#   (2) ARN ambiental con decontX, filtrado por contaminacion y exclusion de AD6
 #   (3) Dobletes con scDblFinder sobre la matriz original
 #   (4) Normalizacion sobre las cuentas de decontX
-#   (5) Filtrado de genes
+#   (5) Filtrado de genes y comprobacion del orden de los nucleos
 #   (6) Resumen y guardado
 # Todo se calcula aqui; al final se guarda el objeto para el script de ruido.
+
+# Ejecutar desde una terminal (no desde el editor), por la memoria:
+#   Rscript scrapper_lau_preprocesado.R > log_preprocesado.txt 2>&1
 #
 # Fuentes generales:
 #   Libro de scrapper: https://bioconductor.org/books/release/scrapbook/
@@ -31,7 +32,7 @@ library(scDblFinder)           # https://bioconductor.org/packages/scDblFinder
 
 set.seed(1234)
 
-proyecto <- "/home/vant/Documentos/proyectos/alzheimer_tn"
+proyecto <- "/ruta/a/alzheimer_tn"   # cambiar por la ruta local del proyecto
 ruta     <- file.path(proyecto, "data/raw/Lau_32989152/Lau2020_sce.rds")
 outdir   <- file.path(proyecto, "results/01_preprocesado/Lau_32989152")
 dir.create(outdir, recursive = TRUE, showWarnings = FALSE)
@@ -40,6 +41,17 @@ sce <- readRDS(ruta)
 dim(sce)                         # 33538 genes x 179392 nucleos
 table(sce$donor, sce$condition)  # cada donante es solo AD o solo control
 n_original <- ncol(sce)
+
+# Copia de la metadata original de cada nucleo, para comprobar al final
+# (paso 5.1) que ningun nucleo ha cambiado de donante, condicion o tipo.
+meta_original <- as.data.frame(colData(sce))
+
+# Cuentas originales de 500 nucleos al azar (ocupa muy poco). Algunos se
+# perderan en los filtros; en el paso 5.1 se comprueban los que queden.
+muestra <- sample(colnames(sce), 500)
+cuentas_muestra <- counts(sce)[, muestra]
+nucleos_por_donante <- data.frame(donante = names(table(sce$donor)),
+                                  original = as.vector(table(sce$donor)))
 
 
 
@@ -60,6 +72,7 @@ table(sce$condition, sce$pasa_qc)
 
 sce <- sce[, sce$pasa_qc]
 n_qc <- ncol(sce)
+nucleos_por_donante$tras_qc <- as.vector(table(factor(sce$donor, levels = nucleos_por_donante$donante)))
 
 # (1.1) Para ahorrar memoria: se quitan los genes que no tienen ninguna
 #       cuenta en ningun nucleo (no aportan nada).
@@ -126,6 +139,26 @@ table(sce$condition, sce$discard_contam)
 
 sce <- sce[, !sce$discard_contam]
 n_contam <- ncol(sce)
+nucleos_por_donante$tras_contam <- as.vector(table(factor(sce$donor, levels = nucleos_por_donante$donante)))
+gc()
+
+
+# (2.4) EXCLUSION DE AD6
+#       AD6 es el unico donante que pierde mucho en el filtro de
+#       contaminacion (de 2890 a 2210 nucleos, un 24 %, frente al 1-9 % del
+#       resto). Se excluye aqui, donde aparece la evidencia, para que todo lo
+#       posterior (dobletes, normalizacion, analisis) use los mismos 20
+#       donantes. QC, decontX y la normalizacion se hacen dentro de cada
+#       donante, asi que quitarlo no cambia su resultado para el resto
+#       (scDblFinder simula dobletes al azar y puede variar muy poco).
+
+perdida <- 1 - nucleos_por_donante$tras_contam / nucleos_por_donante$tras_qc
+names(perdida) <- nucleos_por_donante$donante
+round(sort(perdida, decreasing = TRUE), 3)
+
+sce <- sce[, sce$donor != "AD6"]
+n_sin_ad6 <- ncol(sce)
+table(sce$condition)
 gc()
 
 
@@ -145,6 +178,7 @@ table(sce$condition, sce$scDblFinder.class)
 
 sce <- sce[, sce$scDblFinder.class == "singlet"]
 n_dobletes <- ncol(sce)
+nucleos_por_donante$tras_dobletes <- as.vector(table(factor(sce$donor, levels = nucleos_por_donante$donante)))
 gc()
 
 
@@ -171,11 +205,61 @@ sce <- sce[keep_genes, ]
 
 
 
+# (5.1) COMPROBACION DEL ORDEN DE LOS NUCLEOS
+#       Tras separar por donante (decontX, scDblFinder) y volver a unir, hay
+#       que confirmar que cada columna sigue siendo el mismo nucleo, con su
+#       metadata y sus cuentas, y no solo que las dimensiones cuadran.
+#       Si algo falla, stopifnot() detiene el script con un error.
+
+# a) Nombres de nucleo unicos y todos presentes en el objeto original.
+stopifnot(anyDuplicated(colnames(sce)) == 0)
+stopifnot(all(colnames(sce) %in% rownames(meta_original)))
+
+# b) La metadata de cada nucleo coincide con la original.
+idx <- match(colnames(sce), rownames(meta_original))
+for (v in intersect(colnames(meta_original), colnames(colData(sce)))) {
+  stopifnot(identical(as.vector(sce[[v]]), as.vector(meta_original[[v]][idx])))
+}
+print("Metadata: OK")
+
+# c) Las matrices de cuentas tienen los nucleos en el mismo orden.
+stopifnot(identical(colnames(assay(sce, "counts")), colnames(sce)))
+stopifnot(identical(colnames(assay(sce, "decontXcounts")), colnames(sce)))
+stopifnot(identical(colnames(logcounts(sce)), colnames(sce)))
+
+# d) decontX solo resta cuentas: en cada nucleo, las cuentas corregidas
+#    no pueden superar a las originales (si se hubieran desordenado los
+#    nucleos al unir los donantes, esto fallaria).
+stopifnot(all(colSums(assay(sce, "decontXcounts")) <= colSums(counts(sce)) + 1))
+print("decontX: OK")
+
+# e) Las cuentas de los nucleos de la muestra que siguen en el objeto son
+#    identicas a las originales (en los genes que quedan). No se vuelve a
+#    leer el objeto original para no subir el pico de RAM.
+quedan <- intersect(muestra, colnames(sce))
+length(quedan)                   # cuantos de los 500 han pasado los filtros
+stopifnot(all(counts(sce)[, quedan] ==
+              cuentas_muestra[rownames(sce), quedan]))
+rm(cuentas_muestra)
+print("Cuentas: OK")
+
+# f) Nucleos por donante en cada paso. Sirve para ver si algun donante
+#    pierde muchos nucleos o desaparece.
+nucleos_por_donante$condicion <- meta_original$condition[
+  match(nucleos_por_donante$donante, meta_original$donor)]
+nucleos_por_donante
+write.csv(nucleos_por_donante, file.path(outdir, "03_nucleos_por_donante.csv"),
+          row.names = FALSE)
+table(sce$donor, sce$condition)
+
+
+
 # (6) RESUMEN Y GUARDADO
 
 resumen <- data.frame(
-  paso    = c("originales", "tras QC", "tras filtrar contaminacion", "tras quitar dobletes"),
-  nucleos = c(n_original, n_qc, n_contam, n_dobletes))
+  paso    = c("originales", "tras QC", "tras filtrar contaminacion",
+              "tras excluir AD6", "tras quitar dobletes"),
+  nucleos = c(n_original, n_qc, n_contam, n_sin_ad6, n_dobletes))
 resumen
 write.csv(resumen, file.path(outdir, "02_resumen_filtrado.csv"), row.names = FALSE)
 

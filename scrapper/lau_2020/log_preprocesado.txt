@@ -1,0 +1,330 @@
+Cargando paquete requerido: SummarizedExperiment
+Cargando paquete requerido: MatrixGenerics
+Cargando paquete requerido: matrixStats
+
+Adjuntando el paquete: ‘MatrixGenerics’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+    colWeightedMeans, colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars
+
+Cargando paquete requerido: GenomicRanges
+Cargando paquete requerido: stats4
+Cargando paquete requerido: BiocGenerics
+Cargando paquete requerido: generics
+
+Adjuntando el paquete: ‘generics’
+
+The following objects are masked from ‘package:base’:
+
+    as.difftime, as.factor, as.ordered, intersect, is.element, setdiff,
+    setequal, union
+
+
+Adjuntando el paquete: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, is.unsorted, lapply, Map, mapply, match, mget,
+    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+    rbind, Reduce, rownames, sapply, saveRDS, table, tapply, unique,
+    unsplit, which.max, which.min
+
+Cargando paquete requerido: S4Vectors
+
+Adjuntando el paquete: ‘S4Vectors’
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    expand.grid, I, unname
+
+Cargando paquete requerido: IRanges
+Cargando paquete requerido: Seqinfo
+Cargando paquete requerido: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Adjuntando el paquete: ‘Biobase’
+
+The following object is masked from ‘package:MatrixGenerics’:
+
+    rowMedians
+
+The following objects are masked from ‘package:matrixStats’:
+
+    anyMissing, rowMedians
+
+Cargando paquete requerido: Matrix
+
+Adjuntando el paquete: ‘Matrix’
+
+The following object is masked from ‘package:S4Vectors’:
+
+    expand
+
+
+Adjuntando el paquete: ‘celda’
+
+The following object is masked from ‘package:scrapper’:
+
+    normalizeCounts
+
+The following object is masked from ‘package:S4Vectors’:
+
+    params
+
+[1]  33538 179392
+      
+          AD  Ctrl
+  AD1   6243     0
+  AD10 16156     0
+  AD13  1829     0
+  AD19  3794     0
+  AD2  15357     0
+  AD20  9208     0
+  AD21  8472     0
+  AD4   6166     0
+  AD5  12362     0
+  AD6   2990     0
+  AD8   2654     0
+  AD9  10229     0
+  NC11     0  3576
+  NC12     0 15692
+  NC14     0 10983
+  NC15     0  8416
+  NC16     0  6348
+  NC17     0 14491
+  NC18     0 11616
+  NC3      0  6327
+  NC7      0  6483
+
+ FALSE   TRUE 
+ 15682 163710 
+      
+       FALSE  TRUE
+  AD    7989 87471
+  Ctrl  7693 76239
+[1]  30670 163710
+[1] 0
+            used   (Mb) gc trigger    (Mb)   max used   (Mb)
+Ncells  10336375  552.1   18903858  1009.6   14119410  754.1
+Vcells 521766181 3980.8 1517300338 11576.1 1218624178 9297.4
+[1] "AD1"
+[1] "AD2"
+[1] "AD4"
+[1] "AD5"
+[1] "AD6"
+[1] "AD8"
+[1] "AD9"
+[1] "AD10"
+[1] "AD13"
+[1] "AD19"
+[1] "AD20"
+[1] "AD21"
+[1] "NC3"
+[1] "NC7"
+[1] "NC11"
+[1] "NC12"
+[1] "NC14"
+[1] "NC15"
+[1] "NC16"
+[1] "NC17"
+[1] "NC18"
+Hubo 42 avisos (use warnings() para verlos)
+             used   (Mb) gc trigger    (Mb)   max used    (Mb)
+Ncells   10473686  559.4   18903858  1009.6   18903858  1009.6
+Vcells 1016219149 7753.2 2622186183 20005.7 2600232031 19838.2
+[1] "counts"        "decontXcounts"
+     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+6.884e-05 2.507e-02 4.911e-02 1.031e-01 1.101e-01 9.989e-01 
+null device 
+          1 
+[1] 13732
+[1] 8790
+[1] 5479
+
+ FALSE   TRUE 
+158231   5479 
+      
+       FALSE  TRUE
+  AD   84079  3392
+  Ctrl 74152  2087
+            used   (Mb) gc trigger    (Mb)   max used    (Mb)
+Ncells  10483435  559.9   18903858  1009.6   18903858  1009.6
+Vcells 978356569 7464.3 2622186183 20005.7 2600232031 19838.2
+  AD6   AD4   AD5  NC11  NC16  AD19  NC18  AD10  AD21  NC12  NC17   AD9  NC14 
+0.235 0.086 0.057 0.044 0.043 0.032 0.032 0.030 0.029 0.028 0.027 0.026 0.023 
+ NC15  AD20   NC3   NC7   AD2   AD1   AD8  AD13 
+0.021 0.020 0.019 0.018 0.017 0.016 0.013 0.010 
+
+   AD  Ctrl 
+81869 74152 
+            used   (Mb) gc trigger    (Mb)   max used    (Mb)
+Ncells  10483469  559.9   18903858  1009.6   18903858  1009.6
+Vcells 975054117 7439.1 2622186183 20005.7 2600232031 19838.2
+
+singlet doublet 
+ 140727   15294 
+      
+       singlet doublet
+  AD     74138    7731
+  Ctrl   66589    7563
+            used   (Mb) gc trigger    (Mb)   max used    (Mb)
+Ncells  10591390  565.7   18903858  1009.6   18903858  1009.6
+Vcells 825383012 6297.2 2622186183 20005.7 2622186175 20005.7
+    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+  0.2894   1.5904   3.0039   4.9825   6.0264 115.8886 
+keep_genes
+FALSE  TRUE 
+ 1214 29456 
+[1] "Metadata: OK"
+[1] "decontX: OK"
+[1] 394
+[1] "Cuentas: OK"
+   donante original tras_qc tras_contam tras_dobletes condicion
+1      AD1     6243    5333        5247          4851        AD
+2     AD10    16156   14929       14486         13105        AD
+3     AD13     1829    1683        1667          1592        AD
+4     AD19     3794    3509        3395          3178        AD
+5      AD2    15357   13761       13531         12005        AD
+6     AD20     9208    8350        8186          7362        AD
+7     AD21     8472    8122        7889          7055        AD
+8      AD4     6166    5785        5285          4851        AD
+9      AD5    12362   11415       10765          9734        AD
+10     AD6     2990    2890        2210             0        AD
+11     AD8     2654    2431        2399          2274        AD
+12     AD9    10229    9263        9019          8131        AD
+13    NC11     3576    3460        3308          3090      Ctrl
+14    NC12    15692   14003       13616         11975      Ctrl
+15    NC14    10983   10165        9930          8866      Ctrl
+16    NC15     8416    7687        7526          6800      Ctrl
+17    NC16     6348    5945        5689          5210      Ctrl
+18    NC17    14491   13046       12692         11349      Ctrl
+19    NC18    11616   10342       10016          8767      Ctrl
+20     NC3     6327    5820        5710          5245      Ctrl
+21     NC7     6483    5771        5665          5287      Ctrl
+      
+          AD  Ctrl
+  AD1   4851     0
+  AD10 13105     0
+  AD13  1592     0
+  AD19  3178     0
+  AD2  12005     0
+  AD20  7362     0
+  AD21  7055     0
+  AD4   4851     0
+  AD5   9734     0
+  AD8   2274     0
+  AD9   8131     0
+  NC11     0  3090
+  NC12     0 11975
+  NC14     0  8866
+  NC15     0  6800
+  NC16     0  5210
+  NC17     0 11349
+  NC18     0  8767
+  NC3      0  5245
+  NC7      0  5287
+                        paso nucleos
+1                 originales  179392
+2                    tras QC  163710
+3 tras filtrar contaminacion  158231
+4           tras excluir AD6  156021
+5       tras quitar dobletes  140727
+[1]  29456 140727
+R version 4.6.1 (2026-06-24)
+Platform: x86_64-pc-linux-gnu
+Running under: Ubuntu 24.04.4 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.12.0 
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.12.0  LAPACK version 3.12.0
+
+locale:
+ [1] LC_CTYPE=es_ES.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=es_ES.UTF-8        LC_COLLATE=es_ES.UTF-8    
+ [5] LC_MONETARY=es_ES.UTF-8    LC_MESSAGES=es_ES.UTF-8   
+ [7] LC_PAPER=es_ES.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=es_ES.UTF-8 LC_IDENTIFICATION=C       
+
+time zone: Europe/Madrid
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats4    stats     graphics  grDevices utils     datasets  methods  
+[8] base     
+
+other attached packages:
+ [1] scDblFinder_1.26.7          celda_1.28.0               
+ [3] Matrix_1.7-5                scrapper_1.6.3             
+ [5] SingleCellExperiment_1.34.0 SummarizedExperiment_1.42.0
+ [7] Biobase_2.72.0              GenomicRanges_1.64.0       
+ [9] Seqinfo_1.2.0               IRanges_2.46.0             
+[11] S4Vectors_0.50.1            BiocGenerics_0.58.1        
+[13] generics_0.1.4              MatrixGenerics_1.24.0      
+[15] matrixStats_1.5.0          
+
+loaded via a namespace (and not attached):
+  [1] bitops_1.0-9             pROC_1.19.1              gridExtra_2.3.1         
+  [4] rlang_1.2.0              magrittr_2.0.5           scater_1.40.1           
+  [7] RcppAnnoy_0.0.23         compiler_4.6.1           vctrs_0.7.3             
+ [10] reshape2_1.4.5           combinat_0.0-9           stringr_1.6.0           
+ [13] pkgconfig_2.0.3          crayon_1.5.3             XVector_0.52.0          
+ [16] scuttle_1.22.0           Rsamtools_2.28.0         ggbeeswarm_0.7.3        
+ [19] UCSC.utils_1.8.0         bluster_1.22.0           WriteXLS_6.8.0          
+ [22] beachmat_2.28.0          cigarillo_1.2.0          GenomeInfoDb_1.48.0     
+ [25] jsonlite_2.0.0           DelayedArray_0.38.2      BiocParallel_1.46.0     
+ [28] irlba_2.3.7              parallel_4.6.1           cluster_2.1.8.2         
+ [31] R6_2.6.1                 stringi_1.8.7            RColorBrewer_1.1-3      
+ [34] MCMCprecision_0.4.2      limma_3.68.4             rtracklayer_1.72.0      
+ [37] xgboost_3.2.1.1          Rcpp_1.1.1-1.1           iterators_1.0.14        
+ [40] FNN_1.1.4.1              igraph_2.3.3             tidyselect_1.2.1        
+ [43] abind_1.4-8              yaml_2.3.12              viridis_0.6.5           
+ [46] enrichR_3.4              doParallel_1.0.17        codetools_0.2-20        
+ [49] curl_7.1.0               lattice_0.22-9           tibble_3.3.1            
+ [52] plyr_1.8.9               withr_3.0.2              S7_0.2.2                
+ [55] Rtsne_0.17               RcppEigen_0.3.4.0.2      Biostrings_2.80.1       
+ [58] pillar_1.11.1            foreach_1.5.2            dbscan_1.2.6            
+ [61] RCurl_1.98-1.19          ggplot2_4.0.3            scales_1.4.0            
+ [64] glue_1.8.1               metapod_1.20.0           tools_4.6.1             
+ [67] dendextend_1.19.1        BiocIO_1.22.0            BiocNeighbors_2.6.0     
+ [70] data.table_1.18.4        RSpectra_0.16-2          ScaledMatrix_1.20.0     
+ [73] locfit_1.5-9.12          GenomicAlignments_1.48.0 scran_1.40.0            
+ [76] XML_3.99-0.23            grid_4.6.1               edgeR_4.10.1            
+ [79] beeswarm_0.4.0           BiocSingular_1.28.0      vipor_0.4.7             
+ [82] restfulr_0.0.17          cli_3.6.6                rsvd_1.0.5              
+ [85] S4Arrays_1.12.0          viridisLite_0.4.3        ggdendro_0.2.0          
+ [88] dplyr_1.2.1              uwot_0.2.4               gtable_0.3.6            
+ [91] digest_0.6.39            dqrng_0.4.1              SparseArray_1.12.2      
+ [94] ggrepel_0.9.8            rjson_0.2.23             farver_2.1.2            
+ [97] lifecycle_1.0.5          httr_1.4.8               statmod_1.5.2           
+[100] MASS_7.3-65             
