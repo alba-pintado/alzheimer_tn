@@ -1,48 +1,25 @@
-# outputs generados
-papers/
+# Data and results are not tracked (size and patient data)
+data/
 results/
-*.pdf
-*.csv
-*.png
-*.jpg
-
-
-# datos pesados opcionales
-dta/
-data/organized_data/
-data/annotations/
-data/*.zip
-*.qs
 *.rds
-*.h5
+*.qs
 *.h5ad
-*.mtx
-*.mtx.tar
+*.h5
+*.zip
 *.tar
+*.tar.gz
 
-# Paquete RaceID descomprimido (se instala aparte)
-RaceID3_StemID2_package-master/
-*.so
-*.o
-
-
-# entornos ytemporales de R
-.Rproj.user/
+# Logs and local files
+log_*.txt
+*.log
 .Rhistory
 .RData
-.Ruserdata
-*.Rproj
-
-
-# R / python basura
-*.RData
-*.Rhistory
-__pycache__/
-*.pyc
+.Rproj.user/
 .ipynb_checkpoints/
-
-
-# sistema
 .DS_Store
-Thumbs.db
-close
+# Personal and third-party material
+docs/
+papers/
+notebooks/
+scripts/
+RaceID3_StemID2_package-master/
