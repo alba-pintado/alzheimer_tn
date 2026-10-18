@@ -12,9 +12,9 @@
 #   (6) Resumen y guardado
 # Todo se calcula aqui; al final se guarda el objeto para el script de ruido.
 
-# Ejecutar desde una terminal (no desde el editor), por la memoria:
-#   Rscript scrapper_lau_preprocesado.R > log_preprocesado.txt 2>&1
-#
+# Usa mucha memoria (unos 20 GB en el preprocesado): si el editor se cierra,
+# lanzarlo desde la terminal con Rscript.
+
 # Fuentes generales:
 #   Libro de scrapper: https://bioconductor.org/books/release/scrapbook/
 #   OSCA (Amezquita et al. 2020, Nat Methods, doi:10.1038/s41592-019-0654-x):
@@ -32,7 +32,7 @@ library(scDblFinder)           # https://bioconductor.org/packages/scDblFinder
 
 set.seed(1234)
 
-proyecto <- "/ruta/a/alzheimer_tn"   # cambiar por la ruta local del proyecto
+proyecto <- "~/Documentos/proyectos/alzheimer_tn"   # carpeta del proyecto
 ruta     <- file.path(proyecto, "data/raw/Lau_32989152/Lau2020_sce.rds")
 outdir   <- file.path(proyecto, "results/01_preprocesado/Lau_32989152")
 dir.create(outdir, recursive = TRUE, showWarnings = FALSE)
@@ -264,5 +264,5 @@ resumen
 write.csv(resumen, file.path(outdir, "02_resumen_filtrado.csv"), row.names = FALSE)
 
 dim(sce)
-saveRDS(sce, file.path(proyecto, "results/objects/lau_sce_preprocesado.rds"))
+saveRDS(sce, file.path(proyecto, "results/objects/lau_2020/lau_sce_preprocesado.rds"))
 sessionInfo()

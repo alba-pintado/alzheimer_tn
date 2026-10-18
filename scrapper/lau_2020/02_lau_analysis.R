@@ -45,7 +45,7 @@ proyecto <- "/path/to/alzheimer_tn"   # change to the local project path
 outdir   <- file.path(proyecto, "results/02_analisis/Lau_32989152")
 dir.create(outdir, recursive = TRUE, showWarnings = FALSE)
 
-sce <- readRDS(file.path(proyecto, "results/objects/lau_sce_preprocesado.rds"))
+sce <- readRDS(file.path(proyecto, "results/objects/lau_2020/lau_sce_preprocesado.rds"))
 dim(sce)                         # genes x nuclei (20 donors)
 assayNames(sce)                  # "counts" "decontXcounts" "logcounts"
 
@@ -299,5 +299,5 @@ altExpNames(sce)                 # character(0)
 
 # (9) SAVING
 
-saveRDS(sce, file.path(proyecto, "results/objects/lau_sce_analisis.rds"))
+saveRDS(sce, file.path(proyecto, "results/objects/lau_2020/lau_sce_analisis.rds"))
 sessionInfo()

@@ -264,5 +264,5 @@ resumen
 write.csv(resumen, file.path(outdir, "02_resumen_filtrado.csv"), row.names = FALSE)
 
 dim(sce)
-saveRDS(sce, file.path(proyecto, "results/objects/lau_sce_preprocesado.rds"))
+saveRDS(sce, file.path(proyecto, "results/objects/lau_2020/lau_sce_preprocesado.rds"))
 sessionInfo()

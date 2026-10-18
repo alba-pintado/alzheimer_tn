@@ -5,11 +5,15 @@ of human prefrontal cortex from 21 donors (12 AD, 9 control), 179,392 nuclei.
 
 | Script | English | Spanish |
 |---|---|---|
-| 1. Preprocessing | `scrapper_lau_preprocessing.R` | `scrapper_lau_preprocesado.R` |
-| 2. Analysis | `scrapper_lau_analysis.R` | `scrapper_lau_analisis.R` |
+| 1. Preprocessing | `01_lau_preprocessing.R` | `01_lau_preprocesado.R` |
+| 2. Analysis | `02_lau_analysis.R` | `02_lau_analisis.R` |
+| 3. UMAP diagnostic (exploratory) | — | `03_lau_diagnostico_umap.R` |
+| 4. Harmony test (exploratory) | — | `04_lau_harmony.R` |
 
 The analysis script reads the object saved by the preprocessing script, so they
-must be run in that order.
+must be run in that order. Scripts 3 and 4 read the analysis object and do not
+modify it: they are checks of the UMAP and a test of an alternative batch
+correction.
 
 ## 1. Preprocessing
 
@@ -71,20 +75,55 @@ Because every donor is either AD or control, correcting by donor also removes
 part of the disease effect. The MNN space is therefore used only for
 visualisation and clustering; markers and AD vs control use uncorrected data.
 
+## 3. UMAP diagnostic (exploratory)
+
+`03_lau_diagnostico_umap.R` finds the islands of the MNN UMAP with DBSCAN
+(`dbscan`, eps = 0.3, minPts = 20) and, for each island, reports size, cell
+type, donors, AD fraction and quality metrics (detected genes, mitochondrial %,
+decontX contamination, scDblFinder score). It also recomputes the UMAP on the
+uncorrected PCA.
+
+- 42 islands with MNN vs 17 without correction: the small fragments come mainly
+  from MNN, which splits neuronal subtypes.
+- Every island contains nuclei from at least 16 donors, with an AD fraction
+  between 0.38 and 0.75, and none looks like doublets.
+- 3 islands (3,632 nuclei, 2.6 %) have low quality: fewer than 700 detected
+  genes and the highest mitochondrial %.
+
+## 4. Harmony test (exploratory)
+
+`04_lau_harmony.R` replaces MNN with Harmony (by donor) on the same 25-PC PCA
+and recomputes R², UMAP and SNN clustering.
+
+| | MNN | Harmony |
+|---|---|---|
+| UMAP islands | 42 | 17 |
+| SNN clusters | 33 | 25 |
+| ARI vs authors' annotation | 0.30 | 0.44 |
+| PC1 R² vs cell type | 0.977 | 0.974 |
+| PC1 R² vs donor | 0.066 | 0.067 |
+
+Markers are computed per cluster, so they would change with Harmony; pseudobulk
+and differential abundance use uncorrected counts and the authors' cell types,
+so they do not depend on this choice.
+
 ## Running it
 
 From a terminal rather than an editor (the preprocessing takes over an hour and
 needs about 20 GB of RAM at its peak):
 
 ```bash
-Rscript scrapper_lau_preprocessing.R > log_preprocessing.txt 2>&1 && \
-Rscript scrapper_lau_analysis.R > log_analysis.txt 2>&1
+Rscript 01_lau_preprocesado.R > log_preprocesado.txt 2>&1 && \
+Rscript 02_lau_analisis.R > log_analisis.txt 2>&1
+Rscript 03_lau_diagnostico_umap.R > log_diagnostico.txt 2>&1
+Rscript 04_lau_harmony.R > log_harmony.txt 2>&1
 ```
 
 Outputs:
 
 - `results/01_preprocesado/Lau_32989152/`: contamination histogram, filtering summary and nuclei per donor.
 - `results/02_analisis/Lau_32989152/`: mean–variance plot, scree plot, UMAPs, markers, pseudobulk results and differential abundance.
+- `results/02_analisis/Lau_32989152/diagnostico_umap/` and `.../harmony/`: island table, UMAPs and the MNN vs Harmony comparison.
 - `results/objects/lau_sce_preprocesado.rds` and `results/objects/lau_sce_analisis.rds`.
 
 ## References
@@ -95,3 +134,5 @@ Outputs:
 - Haghverdi L et al. (2018). Batch effects in single-cell RNA-sequencing data are corrected by matching mutual nearest neighbors. *Nat Biotechnol* 36:421–427.
 - Crowell HL et al. (2020). muscat detects subpopulation-specific state transitions from multi-sample multi-condition single-cell transcriptomics data. *Nat Commun* 11:6077.
 - Squair JW et al. (2021). Confronting false discoveries in single-cell differential expression. *Nat Commun* 12:5692.
+- Korsunsky I et al. (2019). Fast, sensitive and accurate integration of single-cell data with Harmony. *Nat Methods* 16:1289–1296.
+- Hahsler M, Piekenbrock M, Doran D (2019). dbscan: Fast density-based clustering with R. *J Stat Softw* 91(1):1–30.

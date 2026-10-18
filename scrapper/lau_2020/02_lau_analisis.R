@@ -4,7 +4,7 @@
 # Master en Bioinformatica y Ciencia de Datos (ISCIII)
 
 # Segundo script. Parte de lau_sce_preprocesado.rds (salida de
-# scrapper_lau_preprocesado.R: QC, decontX, dobletes, normalizacion y genes >= 3
+# 01_lau_preprocesado.R: QC, decontX, dobletes, normalizacion y genes >= 3
 # nucleos) y aplica el resto de capitulos del libro de scrapper:
 
 #   (1) Genes variables (HVGs)            scrapbook cap. 3
@@ -17,8 +17,8 @@
 #   (8) Multiomica                        scrapbook cap. 9
 #   (9) Guardado
 
-# Ejecutar desde una terminal (no desde el editor), por la memoria:
-#   Rscript scrapper_lau_analisis.R > log_analisis.txt 2>&1
+# Usa mucha memoria (unos 20 GB en el preprocesado): si el editor se cierra,
+# lanzarlo desde la terminal con Rscript.
 
 # Fuentes generales:
 #   Libro de scrapper: https://bioconductor.org/books/release/scrapbook/
@@ -42,11 +42,11 @@ library(edgeR)                 # pseudobulk: https://bioconductor.org/packages/e
 set.seed(1234)
 nthreads <- 2
 
-proyecto <- "/home/vant/Documentos/proyectos/alzheimer_tn"   # cambiar por la ruta local del proyecto
+proyecto <- "~/Documentos/proyectos/alzheimer_tn"   # carpeta del proyecto
 outdir   <- file.path(proyecto, "results/02_analisis/Lau_32989152")
 dir.create(outdir, recursive = TRUE, showWarnings = FALSE)
 
-sce <- readRDS(file.path(proyecto, "results/objects/lau_sce_preprocesado.rds"))
+sce <- readRDS(file.path(proyecto, "results/objects/lau_2020/lau_sce_preprocesado.rds"))
 dim(sce)                         # genes x nucleos (20 donantes)
 assayNames(sce)                  # "counts" "decontXcounts" "logcounts"
 
@@ -299,5 +299,5 @@ altExpNames(sce)                 # character(0)
 
 # (9) GUARDADO
 
-saveRDS(sce, file.path(proyecto, "results/objects/lau_sce_analisis.rds"))
+saveRDS(sce, file.path(proyecto, "results/objects/lau_2020/lau_sce_analisis.rds"))
 sessionInfo()
