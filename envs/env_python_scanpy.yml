@@ -1,0 +1,26 @@
+name: alzheimer_python
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.11
+  - tbb
+  - scanpy>=1.10
+  - anndata>=0.10
+  - numpy
+  - pandas
+  - scipy
+  - matplotlib
+  - seaborn
+  - numba
+  - leidenalg
+  - python-igraph
+  - umap-learn
+  - harmonypy
+  - pydeseq2>=0.4
+  - scikit-learn
+  - statsmodels
+  - jupyter
+  - jupyterlab
+  - ipykernel
+  - snakemake-minimal>=7.32
