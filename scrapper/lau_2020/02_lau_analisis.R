@@ -47,7 +47,7 @@ outdir   <- file.path(proyecto, "results/02_analisis/Lau_32989152")
 dir.create(outdir, recursive = TRUE, showWarnings = FALSE)
 
 sce <- readRDS(file.path(proyecto, "results/objects/lau_2020/lau_sce_preprocesado.rds"))
-dim(sce)                         # genes x nucleos (20 donantes)
+dim(sce)                         # genes x nucleos (21 donantes)
 assayNames(sce)                  # "counts" "decontXcounts" "logcounts"
 
 # (0.1) Simbolos de los genes (vienen en Ensembl), para leer los marcadores.
@@ -61,8 +61,18 @@ rowData(sce)$simbolo <- simbolo
 
 # (0.2) Columnas de diseno.
 sce$celltype <- sce$celltype_compendium
-anotada <- !is.na(sce$celltype)
 table(sce$celltype, useNA = "ifany")
+
+# (0.3) Se quitan los nucleos sin tipo celular asignado (NA en la anotacion
+#       del compendio). No se pueden usar en las comparaciones por tipo
+#       celular ni en el ruido, y asi el PCA, el UMAP y el clustering se
+#       calculan solo sobre nucleos anotados.
+sin_tipo <- is.na(sce$celltype)
+cat("Nucleos sin tipo celular que se quitan:", sum(sin_tipo), "\n")
+print(table(sce$donor[sin_tipo]))
+sce <- sce[, !sin_tipo]
+dim(sce)
+anotada <- !is.na(sce$celltype)   # ahora todos TRUE; se mantiene por compatibilidad
 
 
 
@@ -86,11 +96,16 @@ dev.off()
 
 
 
-# (2) PCA (scrapbook cap. 4)
-#     25 componentes sobre los 3000 HVGs.
-#     Fuente: runPca; OSCA "Dimensionality reduction".
+# (2) PCA (scrapbook cap. 4 y 8)
+#     25 componentes sobre los 3000 HVGs, bloqueando por donante: las
+#     componentes se calculan con los datos centrados dentro de cada donante,
+#     de modo que describen la variacion biologica dentro de cada muestra y no
+#     las diferencias entre donantes. Es la entrada recomendada para MNN.
+#     Fuente: ?runPca (argumento block); scrapbook cap. 8; OSCA "Dimensionality
+#     reduction".
 
-pca <- runPca(logcounts(sce)[hvgs, ], number = 25, num.threads = nthreads)
+pca <- runPca(logcounts(sce)[hvgs, ], number = 25, block = sce$donor,
+              num.threads = nthreads)
 var_pct <- pca$variance.explained / pca$total.variance * 100
 round(head(var_pct, 6), 2)
 reducedDim(sce, "PCA") <- t(pca$components)
@@ -232,8 +247,7 @@ write.csv(resumen_marcadores, file.path(outdir, "07_marcadores_top10.csv"), row.
 #     Se suman las cuentas crudas (counts) de cada donante dentro de cada
 #     tipo celular: la replica es el donante, no el nucleo. Se usan las
 #     crudas porque edgeR modela cuentas enteras. Control es la referencia:
-#     logFC > 0 = mas alto en AD. AD6 ya se excluyo en el
-#     preprocesado (paso 2.4).
+#     logFC > 0 = mas alto en AD. Se usan los 21 donantes (12 AD, 9 control).
 #     Fuentes: Crowell et al. 2020, Nat Commun 11:6077, doi:10.1038/s41467-020-19894-4;
 #     Squair et al. 2021, Nat Commun 12:5692, doi:10.1038/s41467-021-25960-2;
 #     edgeR (Chen, Lun y Smyth 2016, doi:10.12688/f1000research.8987.2).

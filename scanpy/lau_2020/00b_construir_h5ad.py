@@ -34,10 +34,10 @@ adata = ad.AnnData(X=logcounts, obs=obs, var=var, layers={"counts": counts})
 adata.obsm["X_pca_R"] = pd.read_csv(os.path.join(base, "lau_export_pca_R.csv"), index_col=0).values
 adata.obsm["X_umap_R"] = pd.read_csv(os.path.join(base, "lau_export_umap_R.csv"), index_col=0).values
 
-# Comprobaciones: mismas dimensiones que en R, 20 donantes y sin AD6.
+# Comprobaciones: mismas dimensiones que en R y 21 donantes (12 AD, 9 control).
 print(adata)
 assert adata.obs_names.is_unique and adata.var_names.is_unique
-assert adata.obs["donor"].nunique() == 20 and "AD6" not in set(adata.obs["donor"])
+assert adata.obs["donor"].nunique() == 21
 print(pd.crosstab(adata.obs["donor"], adata.obs["condition"]))
 
 salida = os.path.join(base, "lau_sce_analisis.h5ad")
