@@ -1,11 +1,11 @@
 # Lau et al. 2020: diagnóstico de las poblaciones pequeñas del UMAP
-#
+
 # TFM "Transcriptional Noise in Alzheimer's Disease Progression" (CBMSO)
-#
+
 # El UMAP muestra muchas islas pequeñas repartidas por el espacio. Este script
 # no modifica nada: describe cada isla para saber si son subtipos reales,
 # núcleos de baja calidad, dobletes residuales o un efecto de la corrección MNN.
-#
+
 #   (1) Islas del UMAP: grupos de núcleos separados en el dibujo (DBSCAN)
 #   (2) Tabla por isla: tamaño, tipo celular, donantes y métricas de calidad
 #   (3) UMAP coloreado por las métricas de calidad

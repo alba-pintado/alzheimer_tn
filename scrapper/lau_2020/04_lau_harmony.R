@@ -1,20 +1,20 @@
 # Lau et al. 2020: UMAP y clustering con Harmony en lugar de MNN
-#
+
 # TFM "Transcriptional Noise in Alzheimer's Disease Progression" (CBMSO)
-#
+
 # Comparación con el análisis principal (02_lau_analisis.R), que corrige
 # por donante con MNN. El diagnóstico del UMAP mostró que MNN fragmenta los
 # subtipos neuronales (42 islas con MNN, 17 sin corregir). Aquí se prueba
 # Harmony, una corrección más suave, sobre el MISMO PCA. No modifica el objeto
 # del análisis principal: marcadores, pseudobulk y abundancia no cambian,
 # porque se calculan sobre datos sin corregir.
-#
+
 #   (1) Harmony sobre el PCA, por donante
 #   (2) R² de las componentes frente a tipo celular y donante
 #   (3) UMAP y clustering sobre el espacio Harmony
 #   (4) Pureza, ARI, donantes por cluster e islas del UMAP (como el diagnóstico)
 #   (5) Comparación con los clusters de MNN
-#
+
 # Fuente: Korsunsky et al. 2019, Nat Methods 16:1289-1296,
 # doi:10.1038/s41592-019-0619-0; https://cran.r-project.org/package=harmony
 
