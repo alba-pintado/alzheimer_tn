@@ -46,7 +46,7 @@ outdir   <- file.path(proyecto, "results/02_analisis/Lau_32989152")
 dir.create(outdir, recursive = TRUE, showWarnings = FALSE)
 
 sce <- readRDS(file.path(proyecto, "results/objects/lau_2020/lau_sce_preprocesado.rds"))
-dim(sce)                         # genes x nuclei (20 donors)
+dim(sce)                         # genes x nuclei (21 donors)
 assayNames(sce)                  # "counts" "decontXcounts" "logcounts"
 
 # (0.1) Gene symbols (genes are Ensembl IDs), to read the markers.
@@ -60,8 +60,18 @@ rowData(sce)$simbolo <- simbolo
 
 # (0.2) Design columns.
 sce$celltype <- sce$celltype_compendium
-anotada <- !is.na(sce$celltype)
 table(sce$celltype, useNA = "ifany")
+
+# (0.3) Nuclei without an assigned cell type (NA in the compendium
+#       annotation) are removed. They cannot be used in per-cell-type
+#       comparisons or in the noise analysis, and this way PCA, UMAP and
+#       clustering are computed on annotated nuclei only.
+sin_tipo <- is.na(sce$celltype)
+cat("Nuclei without cell type removed:", sum(sin_tipo), "\n")
+print(table(sce$donor[sin_tipo]))
+sce <- sce[, !sin_tipo]
+dim(sce)
+anotada <- !is.na(sce$celltype)   # now all TRUE; kept for compatibility
 
 
 
@@ -85,11 +95,16 @@ dev.off()
 
 
 
-# (2) PCA (scrapbook ch. 4)
-#     25 components on the 3000 HVGs.
-#     Source: ?runPca; OSCA "Dimensionality reduction".
+# (2) PCA (scrapbook ch. 4 and 8)
+#     25 components on the 3000 HVGs, blocking by donor: components are
+#     computed on data centred within each donor, so they describe the
+#     biological variation within each sample and not the differences
+#     between donors. This is the recommended input for MNN.
+#     Source: ?runPca (block argument); scrapbook ch. 8; OSCA
+#     "Dimensionality reduction".
 
-pca <- runPca(logcounts(sce)[hvgs, ], number = 25, num.threads = nthreads)
+pca <- runPca(logcounts(sce)[hvgs, ], number = 25, block = sce$donor,
+              num.threads = nthreads)
 var_pct <- pca$variance.explained / pca$total.variance * 100
 round(head(var_pct, 6), 2)
 reducedDim(sce, "PCA") <- t(pca$components)
@@ -231,8 +246,7 @@ write.csv(resumen_marcadores, file.path(outdir, "07_marcadores_top10.csv"), row.
 #     Raw counts are summed per donor within each cell type: the replicate
 #     is the donor, not the nucleus. Raw counts are used because edgeR
 #     models integer counts. Control is the reference: logFC > 0 = higher
-#     in AD. AD6 was already excluded in
-#     preprocessing (step 2.4).
+#     in AD. All 21 donors are used (12 AD, 9 control).
 #     Sources: Crowell et al. 2020, Nat Commun 11:6077, doi:10.1038/s41467-020-19894-4;
 #     Squair et al. 2021, Nat Commun 12:5692, doi:10.1038/s41467-021-25960-2;
 #     edgeR (Chen, Lun and Smyth 2016, doi:10.12688/f1000research.8987.2).

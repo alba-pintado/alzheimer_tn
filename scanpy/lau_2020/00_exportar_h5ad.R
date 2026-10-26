@@ -18,7 +18,7 @@ dir_obj  <- file.path(proyecto, "results/objects/lau_2020")
 salida   <- file.path(dir_obj, "lau_export.h5")
 
 sce <- readRDS(file.path(dir_obj, "lau_sce_analisis.rds"))
-dim(sce)                           # 29456 genes x 140727 núcleos
+dim(sce)                           # 29447 genes x 137303 núcleos
 assay(sce, "decontXcounts") <- NULL   # Python no la usa
 gc()
 

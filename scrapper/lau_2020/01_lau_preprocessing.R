@@ -5,7 +5,7 @@
 
 # Order of the steps:
 #   (1) Quality control
-#   (2) Ambient RNA with decontX, contamination filter and exclusion of AD6
+#   (2) Ambient RNA with decontX and contamination filter
 #   (3) Doublets with scDblFinder on the original matrix
 #   (4) Normalisation on the decontX counts
 #   (5) Gene filtering and check of the nucleus order
@@ -56,7 +56,7 @@ nucleos_por_donante <- data.frame(donante = names(table(sce$donor)),
 
 
 # (1) QUALITY CONTROL (scrapbook ch. 1)
-#     Thresholds at median +/- 3 MAD within each donor. The metrics are
+#     Thresholds at median +/- NUM_MADS MAD within each donor (default 3). The metrics are
 #     already in the object (genes are Ensembl IDs, so mitochondrial genes
 #     cannot be found by the "MT-" prefix).
 #     Source: ?suggestRnaQcThresholds and ?filterRnaQcMetrics (scrapper).
@@ -64,7 +64,8 @@ nucleos_por_donante <- data.frame(donante = names(table(sce$donor)),
 qc <- list(sum      = sce$sum,
            detected = sce$detected,
            subsets  = list(MT = sce$subsets_mito_percent / 100))
-umbrales <- suggestRnaQcThresholds(qc, block = sce$donor)
+NUM_MADS <- 2.5   # 3 = default; stricter (2.5 or 2) to remove more low-quality nuclei
+umbrales <- suggestRnaQcThresholds(qc, block = sce$donor, num.mads = NUM_MADS)
 sce$pasa_qc <- filterRnaQcMetrics(umbrales, qc, block = sce$donor)
 
 table(sce$pasa_qc)
@@ -143,23 +144,17 @@ nucleos_por_donante$tras_contam <- as.vector(table(factor(sce$donor, levels = nu
 gc()
 
 
-# (2.4) EXCLUSION OF AD6
-#       AD6 is the only donor that loses many nuclei in the contamination
-#       filter (from 2890 to 2210 nuclei, 24 %, against 1-9 % in the other
-#       donors). It is removed here, where the evidence appears, so that
-#       every later step (doublets, normalisation, analysis) uses the same
-#       20 donors. QC, decontX and normalisation work within each donor, so
-#       removing it does not change their result for the rest (scDblFinder
-#       simulates doublets at random and may vary very slightly).
+# (2.4) LOSS PER DONOR IN THE CONTAMINATION FILTER
+#       In an earlier version AD6 lost 24 % of its nuclei in this filter and
+#       was excluded. With the current preprocessing it loses 10 %, like AD4
+#       (9.8 %): it no longer stands out, so all 21 donors are kept (12 AD,
+#       9 control). The loss per donor is still printed to check that no
+#       donor separates from the rest.
 
 perdida <- 1 - nucleos_por_donante$tras_contam / nucleos_por_donante$tras_qc
 names(perdida) <- nucleos_por_donante$donante
 round(sort(perdida, decreasing = TRUE), 3)
-
-sce <- sce[, sce$donor != "AD6"]
-n_sin_ad6 <- ncol(sce)
 table(sce$condition)
-gc()
 
 
 
@@ -258,8 +253,8 @@ table(sce$donor, sce$condition)
 
 resumen <- data.frame(
   paso    = c("originales", "tras QC", "tras filtrar contaminacion",
-              "tras excluir AD6", "tras quitar dobletes"),
-  nucleos = c(n_original, n_qc, n_contam, n_sin_ad6, n_dobletes))
+              "tras quitar dobletes"),
+  nucleos = c(n_original, n_qc, n_contam, n_dobletes))
 resumen
 write.csv(resumen, file.path(outdir, "02_resumen_filtrado.csv"), row.names = FALSE)
 

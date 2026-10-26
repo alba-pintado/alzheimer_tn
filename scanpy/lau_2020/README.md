@@ -1,7 +1,7 @@
 # Lau et al. 2020 — export to Python
 
 Export of the processed R object to AnnData (`.h5ad`), with the same nuclei and
-genes as R (140,727 nuclei × 29,456 genes, 20 donors, AD6 excluded). The `.h5ad`
+genes as R (137,303 nuclei × 29,447 genes, 21 donors: 12 AD and 9 control). The `.h5ad`
 is the input for the transcriptional noise analysis with DECIBEL, which is
 written in Python.
 
@@ -29,8 +29,8 @@ The resulting `.h5ad` contains:
 - `var`: `simbolo` (gene symbol; Ensembl ID when there is none)
 - `obsm`: `X_pca_R`, `X_umap_R` (coordinates from the R analysis)
 
-`00b_construir_h5ad.py` checks that names are unique, that there are 20 donors
-and that AD6 is absent.
+`00b_construir_h5ad.py` checks that names are unique and that all 21 donors are
+present.
 
 ## Environments
 
