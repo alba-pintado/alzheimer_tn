@@ -1,0 +1,30 @@
+genes: 29447 | núcleos: 137303
+AnnData object with n_obs × n_vars = 137303 × 29447
+    obs: 'donor', 'condition', 'celltype', 'cluster', 'subsets_mito_percent', 'sum', 'detected', 'decontX_contamination'
+    var: 'simbolo'
+    obsm: 'X_pca_R', 'X_umap_R'
+    layers: 'counts', None (.X)
+condition     AD   Ctrl
+donor                  
+AD1         4680      0
+AD10       12479      0
+AD13        1465      0
+AD19        3027      0
+AD2        11531      0
+AD20        7087      0
+AD21        6722      0
+AD4         4559      0
+AD5         9539      0
+AD6         2321      0
+AD8         2184      0
+AD9         7859      0
+NC11           0   2927
+NC12           0  11616
+NC14           0   8463
+NC15           0   6473
+NC16           0   4982
+NC17           0  11003
+NC18           0   8294
+NC3            0   5054
+NC7            0   5038
+Guardado: /home/vant/Documentos/proyectos/alzheimer_tn/results/objects/lau_2020/lau_sce_analisis.h5ad

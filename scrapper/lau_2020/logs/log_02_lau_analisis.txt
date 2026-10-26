@@ -1,0 +1,321 @@
+Cargando paquete requerido: SummarizedExperiment
+Cargando paquete requerido: MatrixGenerics
+Cargando paquete requerido: matrixStats
+
+Adjuntando el paquete: ‘MatrixGenerics’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+    colWeightedMeans, colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars
+
+Cargando paquete requerido: GenomicRanges
+Cargando paquete requerido: stats4
+Cargando paquete requerido: BiocGenerics
+Cargando paquete requerido: generics
+
+Adjuntando el paquete: ‘generics’
+
+The following objects are masked from ‘package:base’:
+
+    as.difftime, as.factor, as.ordered, intersect, is.element, setdiff,
+    setequal, union
+
+
+Adjuntando el paquete: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, is.unsorted, lapply, Map, mapply, match, mget,
+    order, paste, pmax, pmax.int, pmin, pmin.int, Position, rank,
+    rbind, Reduce, rownames, sapply, saveRDS, table, tapply, unique,
+    unsplit, which.max, which.min
+
+Cargando paquete requerido: S4Vectors
+
+Adjuntando el paquete: ‘S4Vectors’
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    expand.grid, I, unname
+
+Cargando paquete requerido: IRanges
+Cargando paquete requerido: Seqinfo
+Cargando paquete requerido: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Adjuntando el paquete: ‘Biobase’
+
+The following object is masked from ‘package:MatrixGenerics’:
+
+    rowMedians
+
+The following objects are masked from ‘package:matrixStats’:
+
+    anyMissing, rowMedians
+
+Cargando paquete requerido: scuttle
+
+Adjuntando el paquete: ‘scuttle’
+
+The following objects are masked from ‘package:scrapper’:
+
+    aggregateAcrossCells, normalizeCounts
+
+Cargando paquete requerido: ggplot2
+
+Package 'mclust' version 6.1.3
+Type 'citation("mclust")' for citing this R package in publications.
+
+Adjuntando el paquete: ‘mclust’
+
+The following object is masked from ‘package:matrixStats’:
+
+    count
+
+Cargando paquete requerido: limma
+
+Adjuntando el paquete: ‘limma’
+
+The following object is masked from ‘package:mclust’:
+
+    logsumexp
+
+The following object is masked from ‘package:scater’:
+
+    plotMDS
+
+The following object is masked from ‘package:BiocGenerics’:
+
+    plotMA
+
+
+Adjuntando el paquete: ‘edgeR’
+
+The following objects are masked from ‘package:SingleCellExperiment’:
+
+    cpm, tpm
+
+[1]  29447 139430
+[1] "counts"        "decontXcounts" "logcounts"    
+'select()' returned 1:many mapping between keys and columns
+
+Astro  Endo   ExN   InN    MG Oligo   OPC  <NA> 
+15841  1157 49256 17402  6297 37273 10077  2127 
+Nucleos sin tipo celular que se quitan: 2127 
+
+ AD1 AD10 AD13 AD19  AD2 AD20 AD21  AD4  AD5  AD6  AD8  AD9 NC11 NC12 NC14 NC15 
+  79  192   95   47  107   88  216  177   93  111   49   91  103   86   89  104 
+NC16 NC17 NC18  NC3  NC7 
+  85   97   67   76   75 
+[1]  29447 137303
+[1] 3000
+null device 
+          1 
+[1] 18.11  7.96  4.31  3.16  2.31  1.06
+null device 
+          1 
+  pc  tipo donante
+1  1 0.963   0.066
+2  2 0.965   0.052
+3  3 0.903   0.030
+4  4 0.924   0.016
+5  5 0.908   0.007
+6  6 0.097   0.133
+  pc  tipo donante
+1  1 0.973   0.072
+2  2 0.973   0.050
+3  3 0.941   0.011
+4  4 0.944   0.013
+5  5 0.924   0.008
+6  6 0.098   0.039
+             used    (Mb) gc trigger    (Mb)   max used    (Mb)
+Ncells    9105866   486.4   14123792   754.3   14123792   754.3
+Vcells 1989193096 15176.4 2845812496 21711.9 2332636579 17796.7
+
+    1     2     3     4     5     6     7     8     9    10    11    12    13 
+ 1610  6162 11432  8886  9405  5423  4318 10333 15253  3990  1873  1992  5837 
+   14    15    16    17    18    19    20    21    22    23    24    25    26 
+ 2706  3062  2220  3238  2344  1352  4651  6437  3525  1069  2356  7665  1197 
+   27    28    29    30 
+ 6407   206  1180  1174 
+[1] 30
+   19    29    23    25    24 
+0.786 0.932 0.965 0.975 0.990 
+[1] 0.3017967
+named numeric(0)
+  19   25   29   24   12 
+3.64 2.32 2.29 1.79 1.27 
+   cluster  tipo pureza
+1        1   ExN  0.998
+2        2    MG  0.998
+3        3 Oligo  0.998
+4        4   ExN  0.995
+5        5 Astro  1.000
+6        6   OPC  1.000
+7        7   ExN  0.999
+8        8 Oligo  0.999
+9        9 Oligo  1.000
+10      10   InN  0.999
+11      11   InN  0.999
+12      12   InN  0.999
+13      13   ExN  0.996
+14      14   InN  0.998
+15      15   InN  0.999
+16      16   ExN  0.998
+17      17   ExN  0.999
+18      18   InN  0.996
+19      19   ExN  0.786
+20      20   OPC  0.997
+21      21 Astro  0.994
+22      22   ExN  0.998
+23      23   ExN  0.965
+24      24   ExN  0.990
+25      25   ExN  0.975
+26      26   ExN  0.998
+27      27   ExN  0.993
+28      28   ExN  0.990
+29      29  Endo  0.932
+30      30   InN  0.998
+                                                                                       top10
+1                   HS3ST4, KIAA1217, MDGA2, LRP1B, ROBO2, ASIC2, RALYL, DLC1, SLC8A1, NALF1
+2                 PLXDC2, LRMDA, DOCK4, ARHGAP24, MEF2A, DOCK8, ITPR2, SLC1A3, SRGAP2, NEAT1
+3                   CTNNA3, ST18, IL1RAPL1, QKI, PDE4B, PCDH9, PIP4K2A, MBP, SLC44A1, RNF220
+4      DGKB, LRRTM4, HS6ST3, CBLN2, ST6GALNAC5, STXBP5L, SYN3, CUX2, ENSG00000229618, ATRNL1
+5                    SLC1A2, GPC5, GPM6A, ADGRV1, DTNA, SLC1A3, NPAS3, PITPNC1, RYR3, CTNNA2
+6                      LHFPL3, TNR, DSCAM, PCDH15, VCAN, LRRC4C, PTPRZ1, NLGN1, SMOC1, LUZP2
+7           CBLN2, DGKB, HS6ST3, LRRTM4, CDH18, SYN3, KCNIP4, ENSG00000229618, PDZD2, PPFIA2
+8                     PLP1, MBP, CTNNA3, SLC44A1, PIP4K2A, QKI, ST18, EDIL3, IL1RAPL1, GPM6B
+9                     PLP1, CTNNA3, PIP4K2A, SLC44A1, PDE4B, IL1RAPL1, ST18, QKI, MBP, EDIL3
+10              ERBB4, KIAA1217, KCNC2, NXPH1, SLIT2, FGF12, CNTNAP2, ZNF804A, DLGAP1, DPP10
+11                 GRIK1, CNTNAP2, GRIK2, KIAA1217, NRXN3, XKR4, NXPH1, SPOCK3, ASTN2, ROBO2
+12                 ADARB2, GRIK2, GALNTL6, CNTNAP2, ERBB4, RGS12, DAB1, CNTN5, NRXN3, INPP4B
+13 LOC102546299, ENSG00000253693, CADPS2, KCNH7, NKAIN2, NRG1, PHACTR1, PTPRD, PTPRT, CLSTN2
+14                    ADARB2, GALNTL6, NRXN3, SYNPR, ERBB4, ROBO2, TCF4, SNTG1, CHRM3, LRP1B
+15                   FGF13, SGCZ, GRIP1, FGF14, ADARB2, GRIK1, KAZN, GRIN2A, PTCHD4, MACROD2
+16                       PTPRD, PLCH1, PTPRT, CPNE4, RORB, NEGR1, DCC, POU6F2, TSHZ2, NKAIN2
+17          IQCJ-SCHIP1, PTPRD, TAFA1, UNC5D, LAMA2, CUX2, GRM7, LOC101927745, PTPRK, COL5A2
+18               ERBB4, CNTNAP2, ADARB2, THSD7A, GALNTL6, SYNPR, CSMD1, FRMD4A, ROBO1, NRXN3
+19                    MAP1B, CALM1, NRGN, CHN1, SNAP25, MT-CO2, MT-CO1, ACTB, MT-ND3, MT-CO3
+20                      LHFPL3, TNR, DSCAM, PCDH15, VCAN, PTPRZ1, LRRC4C, SMOC1, NLGN1, SOX6
+21                  DTNA, GPC5, SLC1A2, ADGRV1, NEAT1, CTNNA2, NPAS3, GPM6A, SLC1A3, PITPNC1
+22        CTNNA2, MCTP1, SLC35F3, ATRNL1, ENSG00000239498, PDZRN4, PDE4D, CDH12, RALYL, RYR2
+23                      TSHZ2, ASIC2, ZNF385D, HTR2C, HS3ST4, ITGA8, OLFM3, CPNE4, GRM8, TOX
+24          KCNQ5, PCDH7, ENSG00000250723, CADPS2, RALYL, SYT1, HS3ST4, PHACTR1, RORB, FOXP2
+25                     CBLN2, HS6ST3, DGKB, PHYHIP, LRRTM4, KCNIP4, PDZD2, CDH18, CHN1, ENC1
+26             KCNIP4, ERC2, KCTD16, ZNF804B, SORBS2, PDE1A, CADPS2, LSAMP, LINC03051, FRAS1
+27                   TSHZ2, DCC, RORB, IL1RAPL2, TAFA2, KHDRBS2, POU6F2, FOXP2, RALYL, KCNH5
+28         ROBO2, NRG1, TAFA1, GRM8, GRIK2, ESRRG, COL24A1, PHEX-AS1, ENSG00000253535, PEX5L
+29                      NEAT1, BSG, FLT1, COBLL1, CLDN5, IFITM3, EPAS1, MT2A, ARHGAP29, UTRN
+30                   CNTN5, ZNF385D, DPP10, THSD7A, ERBB4, DLGAP1, RORA, SDK1, DLGAP2, CALN1
+[1] "Astro"
+[1] "Endo"
+[1] "ExN"
+[1] "InN"
+[1] "MG"
+[1] "Oligo"
+[1] "OPC"
+   tipo donantes genes significativos
+1 Astro       21 11515              1
+2  Endo       21  1408              0
+3   ExN       21 17935              0
+4   InN       21 13616              0
+5    MG       21  7052              1
+6 Oligo       21 12363              0
+7   OPC       21 11761              0
+            logFC   logCPM           F     PValue       FDR
+Endo   1.53830855 13.53894 6.885835460 0.01520719 0.1064503
+InN   -0.17069213 16.93918 0.685084388 0.41635176 0.8746315
+ExN   -0.14250490 18.50574 0.517616948 0.47910789 0.8746315
+Oligo  0.24371248 17.93026 0.470113003 0.49978942 0.8746315
+OPC   -0.07686651 16.21111 0.130517425 0.72119773 0.9455163
+Astro  0.05945325 16.83114 0.033443393 0.85649917 0.9455163
+MG    -0.03110111 15.59156 0.004773487 0.94551628 0.9455163
+character(0)
+R version 4.6.1 (2026-06-24)
+Platform: x86_64-pc-linux-gnu
+Running under: Ubuntu 24.04.4 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.12.0 
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.12.0  LAPACK version 3.12.0
+
+locale:
+ [1] LC_CTYPE=es_ES.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=es_ES.UTF-8        LC_COLLATE=es_ES.UTF-8    
+ [5] LC_MONETARY=es_ES.UTF-8    LC_MESSAGES=es_ES.UTF-8   
+ [7] LC_PAPER=es_ES.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=es_ES.UTF-8 LC_IDENTIFICATION=C       
+
+time zone: Europe/Madrid
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats4    stats     graphics  grDevices utils     datasets  methods  
+[8] base     
+
+other attached packages:
+ [1] edgeR_4.10.6                limma_3.68.5               
+ [3] mclust_6.1.3                org.Hs.eg.db_3.23.1        
+ [5] AnnotationDbi_1.74.0        scater_1.40.2              
+ [7] ggplot2_4.0.3               scuttle_1.22.0             
+ [9] scrapper_1.6.3              SingleCellExperiment_1.34.0
+[11] SummarizedExperiment_1.42.0 Biobase_2.72.0             
+[13] GenomicRanges_1.64.0        Seqinfo_1.2.0              
+[15] IRanges_2.46.0              S4Vectors_0.50.3           
+[17] BiocGenerics_0.58.1         generics_0.1.4             
+[19] MatrixGenerics_1.24.0       matrixStats_1.5.0          
+
+loaded via a namespace (and not attached):
+ [1] tidyselect_1.2.1    viridisLite_0.4.3   dplyr_1.2.1        
+ [4] vipor_0.4.7         farver_2.1.2        blob_1.3.0         
+ [7] viridis_0.6.5       Biostrings_2.80.2   S7_0.2.2           
+[10] fastmap_1.2.0       rsvd_1.0.5          lifecycle_1.0.5    
+[13] statmod_1.5.2       KEGGREST_1.52.2     RSQLite_3.53.3     
+[16] magrittr_2.0.5      compiler_4.6.1      rlang_1.3.0        
+[19] tools_4.6.1         S4Arrays_1.12.1     labeling_0.4.3     
+[22] bit_4.6.0           DelayedArray_0.38.2 RColorBrewer_1.1-3 
+[25] abind_1.4-8         BiocParallel_1.46.0 withr_3.0.3        
+[28] grid_4.6.1          beachmat_2.28.0     scales_1.4.0       
+[31] cli_3.6.6           crayon_1.5.3        ragg_1.5.2         
+[34] otel_0.2.0          httr_1.4.9          DBI_1.3.0          
+[37] ggbeeswarm_0.7.3    cachem_1.1.0        splines_4.6.1      
+[40] parallel_4.6.1      XVector_0.52.0      vctrs_0.7.3        
+[43] Matrix_1.7-5        BiocSingular_1.28.1 BiocNeighbors_2.6.0
+[46] bit64_4.8.6         ggrepel_0.9.8       irlba_2.4.1        
+[49] beeswarm_0.4.0      systemfonts_1.3.2   locfit_1.5-9.12    
+[52] glue_1.8.1          codetools_0.2-20    cowplot_1.2.0      
+[55] gtable_0.3.6        ScaledMatrix_1.20.0 tibble_3.3.1       
+[58] pillar_1.11.1       R6_2.6.1            textshaping_1.0.5  
+[61] lattice_0.22-9      png_0.1-9           memoise_2.0.1      
+[64] Rcpp_1.1.2          gridExtra_2.3.1     SparseArray_1.12.3 
+[67] pkgconfig_2.0.3    
